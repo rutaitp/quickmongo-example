@@ -27,8 +27,8 @@ app.post('/noCups', async (req, res)=> {
         coffee: req.body.number
     }
 
-    //set an object in the database
-    await db.push("cups.cups", obj);
+    //set an object in the database and push data into it
+    await db.push("data", obj);
     //insert coffee data into the database
     // db.insert(obj,(err, newDocs)=>{
     //     if(err) {
@@ -46,7 +46,7 @@ app.use('/', express.static('public'));
 
 //add route to get all coffee track information
 app.get('/getCups', async (req,res)=> {
-    let results = await db.get("cups.cups");
+    let results = await db.get("data");
     console.log(results);
     let obj = {data: results};
     res.json(obj);
